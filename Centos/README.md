@@ -30,17 +30,17 @@ Centos虚拟机网络配置：
 VMware配置
 ```
 
-![1](G:\k8s-kubeedge\docs\1.png)
+![1](../docs/imgs/1.png)
 
-![2](G:\k8s-kubeedge\docs\2.png)
+![2](../docs/imgs/2.png)
 
-![3](G:\k8s-kubeedge\docs\3.png)
+![3](../docs/imgs/3.png)
 
 ```
 宿主机配置：
 ```
 
-![4](G:\k8s-kubeedge\docs\4.png)
+![4](../docs/imgs/4.png)
 
 Centos虚拟机ens33配置：
 

@@ -230,19 +230,19 @@ WantedBy=multi-user.target
 
 ### 云端主要目录与cloudcore状态：
 
-![5](G:\k8s-kubeedge\docs\5.png)
+![5](../docs/imgs/5.png)
 
-![6](G:\k8s-kubeedge\docs\6.png)
+![6](../docs/imgs/6.png)
 
 ### 边缘端主要目录与edgecore状态：
 
-![7](G:\k8s-kubeedge\docs\7.png)
+![7](../docs/imgs/7.png)
 
-![8](G:\k8s-kubeedge\docs\8.png)
+![8](../docs/imgs/8.png)
 
 ### 集群状态：
 
-![9](G:\k8s-kubeedge\docs\9.png)
+![9](../docs/imgs/9.png)
 
 [参考与kubeedge集群功能验证](https://mp.weixin.qq.com/s/4IjRxo8uQn7ZKyPvM35ZsA)
 
