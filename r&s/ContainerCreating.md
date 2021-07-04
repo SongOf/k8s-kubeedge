@@ -14,3 +14,9 @@ docker load -i kubeedge-pi-counter.tar
 
 #云端重新部署即可
 ```
+
+```
+本地与服务器文件传输命令：
+rz 上传文件到服务器
+sz filename 从服务器下载文件到本地
+```
