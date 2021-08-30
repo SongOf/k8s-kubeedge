@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloudcore
+  namespace: kubeedge
+  labels:
+    k8s-app: kubeedge
+    kubeedge: cloudcore
+spec:
+  ports:
+    - name: cloudhub
+      nodePort: 30000
+      port: 10000
+      protocol: TCP
+      targetPort: 10000
+    - name: https
+      nodePort: 30002
+      port: 10002
+      protocol: TCP
+      targetPort: 10002
+  selector:
+    k8s-app: kubeedge
+    kubeedge: cloudcore
+  type: NodePort

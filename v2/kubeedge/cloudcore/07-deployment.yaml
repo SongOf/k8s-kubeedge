@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: kubeedge
+    kubeedge: cloudcore
+  name: cloudcore
+  namespace: kubeedge
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: kubeedge
+      kubeedge: cloudcore
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        k8s-app: kubeedge
+        kubeedge: cloudcore
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - k8s-master
+        podAffinity: {}
+        podAntiAffinity: {}
+      hostNetwork: true
+      containers:
+        - image: kubeedge/cloudcore:v1.5.0
+          imagePullPolicy: IfNotPresent
+          name: cloudcore
+          ports:
+            - containerPort: 10000
+              name: cloudhub
+              protocol: TCP
+            - containerPort: 10002
+              name: cloudhub-https
+              protocol: TCP
+            - containerPort: 10003
+              name: cloudstream
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 200m
+              memory: 1Gi
+            requests:
+              cpu: 100m
+              memory: 512Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /etc/kubeedge/config
+              name: conf
+            - mountPath: /root/.kube
+              name: config
+            - mountPath: /etc/hosts
+              name: hosts
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      tolerations:
+        - effect: NoSchedule
+          key: pro
+          value: master
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: cloudcore
+          name: conf
+        - hostPath:
+            path: /root/.kube/
+            type: ""
+          name: config
+        - hostPath:
+            path: /etc/hosts
+            type: ""
+          name: hosts
