@@ -149,3 +149,17 @@ nohup ./edgecore > edgecore.log 2>&1 &
 查看edgenode
 kubectl get nodes
 ```
+
+r&s
+【解决】 Streaming server stopped unexpectedly: listen tcp: lookup localhost on 114.114.114.114:53: no such host
+/etc/hosts配置
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+解决error: system validation failed - Following Cgroup subsystem not mounted: [memory]
+#修改/boot/cmdline.txt
+sudo vim /boot/cmdline.txt
+cgroup_enable=memory cgroup_memory=1
+添加在同一行的最后面,接着内容后空格后添加, 注意:不要换行添加
+#重启机器配置生效
+reboot
